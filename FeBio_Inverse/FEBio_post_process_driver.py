@@ -40,18 +40,18 @@ intermediate csv and determine if we are are acquiring our PCA Points Correctly
 # TODO: Change these parameters
 current_date = datetime.datetime.now()
 date_prefix = str(current_date.year) + '_' + str(current_date.month)  + '_' + str(current_date.day)
-Results_Folder = "D:\\Gordon\\Automate FEB Runs\\2024_5_9_NewModel\\TEST_FOLDER_6_11"  # INTERMEDIATE CSV ENDS UP HERE
+Results_Folder = "D:\\Gordon\\Automate FEB Runs\\2024_10_28\\"  # INTERMEDIATE CSV ENDS UP HERE
 Target_Folder = "D:\\Gordon\\Automate FEB Runs\\2024_5_9_NewModel\\TEST_FOLDER_6_11\\*.feb"  # LOOK HERE FOR THE FEB FILES
 
 # Enter CSV File name manually or have set to date prefix when generating new intermediate
 # csv_filename = Results_Folder + '\\' + date_prefix + '_intermediate.csv'
-csv_filename = 'D:\\Gordon\\Automate FEB Runs\\2024_5_9_NewModel\\TEST_FOLDER_6_11\\2024_6_11_intermediate.csv'
+csv_filename = 'D:\\Gordon\\Automate FEB Runs\\2024_10_28\\2024_10_29_intermediate.csv'
 
 object_list = ['Levator Ani Side 2']  # MAKE SURE THIS MATCHES THE OBJECTS IN THE CURRENTLY USED MODEL
 part_list = ['Part1', 'Part3', 'Part7', 'Part10', 'Part11']
 obj_coords_list = []
 file_num = 0
-numCompPCA = 9
+numCompPCA = 3
 
 # TODO: Change Flags to adjust processing
 first_file_flag = False

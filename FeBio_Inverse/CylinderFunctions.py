@@ -189,8 +189,8 @@ def pair_points(points):
 
     # Pair the x and y values
     paired_points = list(zip(x_values, y_values))
-    print('paired_points: ', paired_points)
-    print('\n')
+    #print('paired_points: ', paired_points)
+    #print('\n')
     return paired_points
 
 def determineRadiiFromFEB(root, cylinder_part):

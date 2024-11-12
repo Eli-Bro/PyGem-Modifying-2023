@@ -380,7 +380,6 @@ def getRadiiFromEdges(edge_elements_dictionary, cylinder_height, logFile, workin
         if int(array[0]) in topedges_dictionary:
             topedges_dictionary[int(array[0])] = array[1]
     startpoint = max_key
-    #TODO: dictionary starting point value messes up, dictionaries are perfect except one point
     outer_radius_dict, inner_radius_dict = IO.find_closest_points(topedges_dictionary, startpoint, 0.4)
 
     return inner_radius_dict, outer_radius_dict

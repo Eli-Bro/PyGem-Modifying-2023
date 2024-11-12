@@ -8,8 +8,8 @@ current_date = datetime.datetime.now()
 date_prefix = str(current_date.year) + '_' + str(current_date.month)  + '_' + str(current_date.day)
 
 # TODO: Adjust parameters for desired outcome
-epochs = 60
-epochs_start = 10
+epochs = 20
+epochs_start = 0
 layers = 3
 capacity = 36
 patience = 15 # originally 50
@@ -17,7 +17,7 @@ numCompPCA = 3
 squared = False
 random.seed(33)
 # This is the intermediate file which will be used to run process_features and used for machine learning
-data = "D:\\Gordon\\Automate FEB Runs\\2024_5_9_NewModel\\TEST_FOLDER_6_11\\2024_6_13_intermediate.csv"
+data = "D:\\Gordon\\Automate FEB Runs\\2024_10_28\\2024_10_29_intermediate.csv"
 
 def machine_learning_all(epochs, epochs_start, layers, capacity, patience, squared, data=None):
     # TODO: Step 1 - generate the csv file (all)

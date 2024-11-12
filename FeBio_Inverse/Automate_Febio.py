@@ -24,10 +24,10 @@ import CylinderFunctions
 
 # FeBio Variables
 # TODO: ENTER IN VAR FILE --> SET PART NAMES FOR ALL MATERIALS --> DONE
-dictionary_file = 'feb_variables.csv' #DONE
+dictionary_file = 'C:\\Users\\EGRStudent\\PycharmProjects\\PyGem-Modifying-2023\\FeBio_Inverse\\feb_variables.csv' #DONE
 FeBioLocation = 'C:\\Program Files\\FEBioStudio2\\bin\\febio4.exe'
 originalFebFilePath = 'D:\\Gordon\\Automate FEB Runs\\2024_5_9_NewModel\\Base_File\\3 Tissue Model v2.feb'
-Results_Folder = "D:\\Gordon\\Automate FEB Runs\\2024_5_9_NewModel\\TEST_FOLDER_6_11"
+Results_Folder = "D:\\Gordon\\Automate FEB Runs\\2024_11_11"
 # This is for output
 object_list = ['Levator Ani Side 2']
 # Currently being used to access base object, may need to be changed when looking to generate multiple objects at once
@@ -40,7 +40,7 @@ numCompPCA = 3
 # FLAGS
 Create_New_Feb_Flag = True
 Run_FeBio_File_Flag = True
-first_int_file_flag = True
+first_int_file_flag = False
 GENERATE_INTERMEDIATE_FLAG = True
 Post_Processing_Flag = False
 
@@ -254,8 +254,8 @@ for row in DOE_dict:
 
                     inner_radius, outer_radius = sav.getRadiiFromEdges(edge_elements_dictionary, cylinder_height,
                                                                        logFile, workingInputFileName, object_list[0])
-                    print(inner_radius)
-                    print(outer_radius)
+                    # print(inner_radius)
+                    # print(outer_radius)
 
                     proc.generate_int_csvs(fileTemplate, object_list, logFile, workingInputFileName,
                                            first_int_file_flag,

@@ -30,7 +30,7 @@ secondPartStart = 'outer_x'
 numCompPCA = 3
 
 # TODO: Replace Headers when changing what intermediate displays
-intermediate_Headers = ['inner_z', 'outer_y', 'outer_z', 'innerShape_x', 'innerShape_y', 'outerShape_x', 'outerShape_y']
+intermediate_Headers = ['inner_y','inner_z', 'outer_y', 'outer_z', 'innerShape_x', 'innerShape_y', 'outerShape_x', 'outerShape_y']
 PCA_Headers = ['inner_y', 'outer_y', 'innerShape_x', 'outerShape_x']
 Modified_Train_Headers = ["File Name", "Part1_E", "Part3_E", "Part11_E", "Pressure", "Inner_Radius", "Outer_Radius"]
 
@@ -66,7 +66,8 @@ def process_features(csv_file, Results_Folder, date_prefix, numCompPCA):
         if i < len(PCA_Headers) - 1:
             next_header = PCA_Headers[i + 1]
             final_header = PCA_Headers[i + 2]
-
+            print("This is next header: ", next_header)
+            print("This is final header: ", next_header)
         # Get the start and end indices of the current header's columns
         currentStartIndex = int_df.columns[int_df.columns.str.contains(header)].tolist()
         currentIndex = int_df.columns.get_loc(currentStartIndex[0])
@@ -194,6 +195,11 @@ def generate_int_csvs(file_params, object_list, log_name, feb_name, first_int_fi
     outer_radius_pc_points = sav.generate_2d_coords_for_cylinder_pca(outer_radius, num_pts)
 
     if plot_points_on_spline:
+        """ TODO: the first two plots are the points before the spline is made, the second are after. 
+             if do not want the ones before, comment out. """
+        CylinderFunctions.plot_pc_points(inner_radius)
+        CylinderFunctions.plot_pc_points(outer_radius)
+        # TODO: comment out above if do not want those plot.
         inner_radius_pc_points_plot = CylinderFunctions.pair_points(inner_radius_pc_points)
         outer_radius_pc_points_plot = CylinderFunctions.pair_points(outer_radius_pc_points)
         CylinderFunctions.plot_pc_points(inner_radius_pc_points_plot)
@@ -201,6 +207,9 @@ def generate_int_csvs(file_params, object_list, log_name, feb_name, first_int_fi
 
     outer_pc_points = sav.generate_2d_coords_for_cylinder_pca(outer_points, num_pts)
     inner_pc_points = sav.generate_2d_coords_for_cylinder_pca(inner_points, num_pts) #REPLACE WITH CYLINDER POINTS
+    print("outer_pc_points: ", outer_pc_points)
+    print("inner_pc_points: ", inner_pc_points)
+
 
 
 
