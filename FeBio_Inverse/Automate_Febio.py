@@ -21,13 +21,14 @@ import CylinderFunctions
 from pygem import RBF
 import numpy as np
 import CylinderFunctions
+import Plot_intermediate_points as pip
 
 # FeBio Variables
 # TODO: ENTER IN VAR FILE --> SET PART NAMES FOR ALL MATERIALS --> DONE
 dictionary_file = 'C:\\Users\\EGRStudent\\PycharmProjects\\PyGem-Modifying-2023\\FeBio_Inverse\\feb_variables.csv' #DONE
 FeBioLocation = 'C:\\Program Files\\FEBioStudio2\\bin\\febio4.exe'
 originalFebFilePath = 'D:\\Gordon\\Automate FEB Runs\\2024_5_9_NewModel\\Base_File\\3 Tissue Model v2.feb'
-Results_Folder = "D:\\Gordon\\Automate FEB Runs\\2024_11_11"
+Results_Folder = "D:\\Gordon\\Automate FEB Runs\\2024_11_13"
 # This is for output
 object_list = ['Levator Ani Side 2']
 # Currently being used to access base object, may need to be changed when looking to generate multiple objects at once
@@ -257,6 +258,7 @@ for row in DOE_dict:
                     # print(inner_radius)
                     # print(outer_radius)
 
+
                     proc.generate_int_csvs(fileTemplate, object_list, logFile, workingInputFileName,
                                            first_int_file_flag,
                                            csv_filename, inner_radius, outer_radius, current_run_dict,
@@ -270,6 +272,8 @@ for row in DOE_dict:
 
                     inner_radius, outer_radius = sav.getRadiiFromEdges(edge_elements_dictionary, cylinder_height,
                                                                        logFile, workingInputFileName, object_list[0])
+
+                    pip.angle_spline_driver(inner_radius, outer_radius)
 
                     proc.generate_int_csvs(fileTemplate, object_list, logFile, workingInputFileName,
                                            first_int_file_flag,
