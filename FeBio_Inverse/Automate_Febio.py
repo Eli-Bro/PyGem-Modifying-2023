@@ -273,7 +273,7 @@ for row in DOE_dict:
                     inner_radius, outer_radius = sav.getRadiiFromEdges(edge_elements_dictionary, cylinder_height,
                                                                        logFile, workingInputFileName, object_list[0])
 
-                    pip.angle_spline_driver(inner_radius, outer_radius)
+                    #pip.angle_spline_driver(inner_radius, outer_radius)
 
                     proc.generate_int_csvs(fileTemplate, object_list, logFile, workingInputFileName,
                                            first_int_file_flag,

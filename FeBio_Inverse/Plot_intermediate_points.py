@@ -5,6 +5,7 @@ from scipy.interpolate import splprep, splev, CubicSpline
 from scipy import interpolate
 from scipy.optimize import curve_fit
 import ShapeAnalysisVerification as sav
+import math
 
 
 intermediate_file = "D:\\Gordon\\Automate FEB Runs\\2024_10_28\\2024_10_29_intermediate.csv"
@@ -135,7 +136,6 @@ def create_spline(points, center):
         Returns:
             A NumPy array of points representing the spline.
         """
-
         points = np.array(points)
 
         # Sort points by angle relative to the center
@@ -160,13 +160,15 @@ def create_spline(points, center):
         curve_y = CubicSpline(sorted_angles, sorted_ys, bc_type = 'periodic')
 
         # defines the evenly spaced angles to for the spline points
-        spaced_angles = np.linspace(sorted_angles[0], sorted_angles[-1], num=100)
+        spaced_angles = np.linspace(0,2 * math.pi, num=10)
+        spaced_angles = spaced_angles[:-1]
+        print("Spaced angles: ", spaced_angles)
 
         #generates the x and y values using the splines
         xnew = curve_x(spaced_angles)
         ynew = curve_y(spaced_angles)
-
-
+        print("xnew: ", xnew)
+        print("ynew: ", ynew)
         # returns the two arrays as a 2D array
         return np.column_stack((xnew, ynew))
 
@@ -252,25 +254,27 @@ def angle_spline_driver(inner_radius, outer_radius):
         spline_points_outer = create_spline(outer_radius, center_outer)
 
         # Finds the equally spaced points based off of the spline
-        equal_spaced_points_inner = find_equal_spaced_points(spline_points_inner, center_inner, 9)
-        equal_spaced_points_outer = find_equal_spaced_points(spline_points_outer, center_outer, 9)
+        #equal_spaced_points_inner = find_equal_spaced_points(spline_points_inner, center_inner, 9)
+        #equal_spaced_points_outer = find_equal_spaced_points(spline_points_outer, center_outer, 9)
 
         #converts to a np array if not already
         outer_radius = np.array(outer_radius)
         inner_radius = np.array(inner_radius)
 
         #plots the spline and any points that are needed on the graph.
-        plot_spline(center_inner, spline_points_inner, equal_spaced_points_inner, inner_radius)
-        plot_spline(center_outer, spline_points_outer, equal_spaced_points_outer, outer_radius)
+        #plot_spline(center_inner, spline_points_inner, inner_radius)
+        #plot_spline(center_outer, spline_points_outer, outer_radius)
 
-def plot_spline(center, spline_points, equally_spaced_points, radius):
+        return spline_points_inner, spline_points_outer
+
+def plot_spline(center, spline_points, radius):
         plt.scatter(radius[:, 0], radius[:, 1])
 
         plt.scatter(center[0], center[1], color='red')
 
         plt.plot(spline_points[:, 0], spline_points[:, 1], color='green')
 
-        plt.scatter(equally_spaced_points[:, 0], equally_spaced_points[:, 1], color='blue')
+        #plt.scatter(equally_spaced_points[:, 0], equally_spaced_points[:, 1], color='blue')
 
         plt.show()
 
